@@ -21,10 +21,24 @@ public class SwitchControl : MonoBehaviour
     public ButtonLamp buttonLamp;
 
     private Quaternion original_transform;
-    
+
     /// <summary>
     /// Set up switches
     /// </summary>
+    public void Toggle()
+    {
+        on = !on;
+
+        if (switchSound != null)
+            switchSound.Play();
+
+        if (buttonLamp != null)
+        {
+            buttonLamp.on = on;
+            buttonLamp.lightColor = on ? ButtonLamp.eColor.Green : ButtonLamp.eColor.Red;
+        }
+    }
+
     void Start()
     {   
         source = gameObject.AddComponent<AudioSource>();
